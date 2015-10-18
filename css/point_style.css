@@ -1,0 +1,47 @@
+body {
+	font-family: 'VT323';
+	font-size: 14em;
+	z-index: -1;
+}
+
+#intro {
+	text-align: center;
+	color: #D3D3D3;
+	opacity: 1;
+}
+
+div {
+	position: absolute;
+	z-index:0;
+	transform: rotate(0deg);
+	-webkit-transform: rotate(0deg); /* Safari */
+}
+
+div #preload {
+   overflow: hidden;
+   left: -10px; 
+   top: -10px;
+   height: 1px;
+   width: 1px;
+}
+
+button {
+	z-index: 2;
+	cursor: none;
+	border: none;
+	background: url("../img/pointer.png") no-repeat;
+	background-size: cover;
+	width: 280px;
+	height:300px;
+	position: absolute;
+    top: -300px;
+    left: -300px;
+}
+
+button:active {
+	background: url("../img/pointer_press.png") no-repeat;
+}
+
+button:focus {
+	outline:0;
+}

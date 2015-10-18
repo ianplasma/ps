@@ -1,0 +1,256 @@
+<html lang='en'>
+<head>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+   <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
+  <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='message/css'>
+  <title>TICKER</title>
+</head>
+<body onkeydown="keyPress(event);">
+
+<style>
+
+*::selection {
+	background-color: #F93B5B;
+	color: #FFF;
+}
+html {
+	background-color: yellow;
+}
+
+body {
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+input {
+	text-align: center;
+	font-family: 'Montserrat', sans-serif;
+	font-size: inherit;
+	outline: 0;
+	padding: 0px;
+	width: 100%;
+	font-weight: 400;
+	border-style: none;
+	transform: rotateZ(.5deg);
+    animation: input 5s infinite;
+    animation-direction: alternate;
+    background-color: yellow;
+    color: #000;
+}
+
+#text_input {
+	font-size: 5vh;
+}
+
+.hidden {
+	display:none;
+}
+
+.default {
+	font-size: 16vh;
+}
+
+.one {
+	font-size: 75vh;
+}
+
+.two {
+	font-size: 40vh;
+}
+
+.three {
+	font-size: 25vh;
+}
+
+.four {
+	font-size: 20vh;
+}
+
+.five {
+	font-size: 15vh;
+}
+
+.six {
+	font-size: 13vh;
+}
+
+.seven {
+	font-size: 11vh;
+}
+
+.eight {
+	font-size: 10vh;
+}
+
+.nine {
+	font-size: 9vh;
+}
+
+.ten {
+	font-size: 8vh;
+}
+
+.eleven {
+	font-size: 7vh;
+}
+
+.twelve {
+	font-size: 6vh;
+}
+
+
+
+@keyframes input {
+  0% {
+    transform: rotateZ(-.5deg);
+  }
+  100% {
+    transform: rotateZ(.5deg);
+  }
+}
+
+
+
+</style>
+<input id="text_input" autocomplete="off" placeholder="type & press enter to ticker" autofocus>
+<script> 
+
+	var ticker_speed = 100;
+	var scroll_characters = 1;
+	var ticker_state = false;
+	var ticker_count = 0;
+	var id_count = 1;
+	var try_again_text = "try using 1-12 words"
+
+
+	function parseInput(){
+		//parse input into words
+		var string = document.getElementById("text_input").value;
+		var x = string.split(" ");
+		if (x.length < 13){
+			return string.split(" ");
+		} else {
+			return false;
+		}
+	}
+
+	function generateTickers(){
+		//make sure the words fill up the ticker
+		var words = parseInput();
+		if (words != false){
+			hideInput();
+			for (i = 0; i < words.length; i++){
+				var word = words[i];
+				while (word.length < 300){
+					word += " "+word;
+				}
+			createTicker(word);
+			ticker_state = true;
+			}
+		} else {
+			console.log("NOPE");
+			noGood();
+		}
+	setFontSize();
+	}
+
+	function createTicker(word){
+		var input = document.createElement("input");
+		var this_id = "id_"+id_count;
+    	input.setAttribute("id", this_id);
+    	input.setAttribute("autocomplete", "off");
+    	input.value = " "+word;
+    	document.body.appendChild(input);
+    	scrollTicker(id_count);
+    	id_count += 1;
+    	ticker_count += 1;
+	}
+
+	function scrollTicker(x){
+		var this_id = "id_"+x;
+		var ticker_message = document.getElementById(this_id).value;
+		window.setTimeout('scrollTicker('+x+')', ticker_speed); 
+		document.getElementById(this_id).value = ticker_message.substring(scroll_characters) + ticker_message.substring(0, scroll_characters);
+	}
+
+	function noGood(){
+		var input = document.getElementById("text_input")
+    	input.value = try_again_text;
+	}
+
+	function hideInput(){
+		var input = document.getElementById("text_input")
+    	input.setAttribute("class", "hidden");
+	}
+
+	function setFontSize(){
+		switch(ticker_count) {
+		case 1:
+	        document.body.setAttribute("class", "one");
+	        break;
+	    case 2:
+	        document.body.setAttribute("class", "two");
+	        break;
+	    case 3:
+	        document.body.setAttribute("class", "three");
+	        break;
+	    case 4:
+	        document.body.setAttribute("class", "four");
+	        break;
+	    case 5:
+	        document.body.setAttribute("class", "five");
+	        break;
+	    case 6:
+	        document.body.setAttribute("class", "six");
+	        break;
+	    case 7:
+	        document.body.setAttribute("class", "seven");
+	        break;
+	    case 8:
+	        document.body.setAttribute("class", "eight");
+	        break;
+	    case 9:
+	        document.body.setAttribute("class", "nine");
+	        break;
+	    case 10:
+	        document.body.setAttribute("class", "ten");
+	        break;
+	    case 11:
+	        document.body.setAttribute("class", "eleven");
+	        break;
+	    default:
+	        document.body.setAttribute("class", "twelve");
+	        break;
+	    }
+	}
+
+	function keyPress(event){
+		var keycode = event.keyCode;
+		var input = document.getElementById("text_input")
+
+		if (keycode == 13){
+
+			if (input.value == try_again_text){
+				location.reload();
+			} else {
+				switch (ticker_state){
+					case false:
+		        	generateTickers();
+		        	break;
+		        	case true:
+		        	location.reload();
+		        	break;
+		        }
+		    }
+		}
+	}
+
+</script>
+</body>
+</html>
