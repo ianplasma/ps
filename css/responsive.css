@@ -3,8 +3,8 @@
 @media screen and (max-width: 670px) {
 
 	p {
-	  margin-bottom: 3vw;
-	  line-height: 6vw;
+	  margin-bottom: 5vw;
+	  line-height: 1.5em;
 	}
 
 	h1 {
@@ -73,7 +73,11 @@
 	  margin-top: -5vw;
 	}
 
-
+	.highlight {
+	  cursor: pointer;
+	  text-decoration: none;
+	  border-bottom: .5vw solid #000000;
+	}
 
 
 	/* -------------------------------- 
@@ -229,59 +233,13 @@
 	}
 
 	.bg_long, .bg_short  {
-	  height: 275vw;
+	  height: 320vw;
 	}
 
 	.open_icon {
 		height: 5vw;
 		width: 5vw;
 	}
-
-}
-
-/* IPHONE 6 */
-@media only screen and (min-device-width : 375px) and (max-device-width : 667px) and (orientation : portrait){
-	
-	.bg_short  {
-	  height: 100%;
-	}
-}
-
-@media only screen and (min-device-width : 375px) and (max-device-width : 667px) and (orientation : landscape){
-	
-	.bg_short  {
-	  height: 200%;
-	  width: 100%;
-	}
-}
-
-/* IPHONE 5 */
-@media only screen and (min-device-width : 320px) and (max-device-width : 568px) and (orientation : portrait){
-	
-	.bg_short {
-	  height: 100%;
-	}
-}
-
-@media only screen and (min-device-width : 375px) and (max-device-width : 667px) and (orientation : landscape){
-	
-	.bg_short  {
-	  height: 200%;
-	}
 }
 
 
-/* IPHONE 2G, 3G, 4, 4S */
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation : portrait) {
-
-	.bg_short  {
-	  height: 100%;
-	}
-}
-
-@media only screen and (min-device-width : 375px) and (max-device-width : 667px) and (orientation : landscape){
-	
-	.bg_short  {
-	  height: 150%;
-	}
-}
